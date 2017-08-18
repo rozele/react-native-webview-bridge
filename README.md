@@ -73,6 +73,25 @@ compile project(':react-native-webview-bridge')
 
 5. run `react-native run-android` to see if everything is compilable.
 
+### Windows
+
+1. Follow steps 1 and 2 in the [instructions](https://github.com/Microsoft/react-native-windows/blob/master/docs/LinkingLibrariesWindows.md) to add a third party native module to your react-native-windows solution. In this case, the project should be located at: `node_modules\react-native-webview-bridge\windows\RNWebViewBridge\RNWebViewBridge.csproj`.
+2. Additionally, follow steps 1 and 2 for: `node_modules\react-native-webview-bridge\windows\WebViewBridgeComponent\WebViewBridgeComponent.csproj`.
+3. Add the following code to `MainPage.cs` in your application (and don't forget a `using` statement!):
+```csharp
+public override List<IReactPackage> Packages
+{
+    get
+    {
+        return new List<IReactPackage>
+        {
+            new MainReactPackage(),
+            new RNWebViewBridgePackage(), // <- this
+        };
+    }
+} 
+```
+
 ## Usage
 
 just import the module with one of your choices way:
